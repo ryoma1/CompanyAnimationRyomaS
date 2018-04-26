@@ -41,7 +41,18 @@ function scene:create( event )
     display.setDefault("background", 0, 0, 0)
 
     -- Insert the logo image
-    logo = display.newImageRect("Images/logo.png", 500, 500)
+    logo = display.newImageRect("Images/glowingLogo1.png", 500, 500)
+    timer.performWithDelay(1000, afterTimer, 1)
+end
+
+function afterTimer()
+logo.isVisible = false
+
+end
+
+
+ 
+
 
     -- set the initial x and y position of the logo
     logo.x = 500
