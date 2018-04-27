@@ -135,7 +135,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         
         -- stop the jungle sounds channel for this screen
-        audio.stop(blipSoundsChannel)
+        audio.stop(phoenixSoundsChannel)
     end
 
 end --function scene:hide( event )
