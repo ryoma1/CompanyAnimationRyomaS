@@ -18,9 +18,11 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
  
 -- The local variables for this scene
-local logo
-local blipSounds = audio.loadSound("Sounds/blip.mp3")
-local blipSoundsChannel
+local logo1
+local logo2
+local logo3
+local phoenixSounds = audio.loadSound("Sounds/phoenix.mp3")
+local phoenixSoundsChannel
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -41,60 +43,43 @@ function scene:create( event )
     display.setDefault("background", 0, 0, 0)
 
     -- Insert the logo image
-    logo = display.newImageRect("Images/glowingLogo1.png", 500, 500)
-    timer.performWithDelay(1000, afterTimer, 1)
-end
+    logo1 = display.newImageRect("Images/glowingLogo1.png", 500, 500)
+    
+    logo1.x = display.contentWidth/2
+    logo1.y = display.contentHeight/2
 
-function afterTimer()
-logo.isVisible = false
-
-end
-
-
+    logo1.alpha = 1
  
+    logo2 = display.newImageRect("Images/glowingLogo2.png", 500, 500)
+    
+    logo2.x = display.contentWidth/2
+    logo2.y = display.contentHeight/2
+
+    logo2.alpha = 0
+
+    logo3 = display.newImageRect("Images/glowingLogo3.png", 500, 500)
+    
+    logo3.x = display.contentWidth/2
+    logo3.y = display.contentHeight/2
+
+    logo3.alpha = 0
 
 
-    -- set the initial x and y position of the logo
-    logo.x = 500
-    logo.y = display.contentHeight/2
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( logo )
-local image = display.newImage("logo.png")
-
-local snapshot = display.newSnapshot( 800, 600 )
-snapshot.x, snapshot.y = 400, 300
-
-local snapshot2 = display.newSnapshot( 800, 600 )
-
-snapshot.group:insert( snapshot2 )
-snapshot2.group:insert( image )
-
---snapshot.fill = compositePaint
-
---image.fill.effect = "filter.blurGaussian"
---image.fill.effect.horizontal.blurSize = 38
---image.fill.effect.horizontal.sigma = 140
---image.fill.effect.vertical.blurSize = 38
---image.fill.effect.vertical.sigma = 140
-
-snapshot2.fill.effect = "filter.bloom"
-snapshot2.fill.effect.levels.white = 0.8
-snapshot2.fill.effect.levels.black = 0.4
-snapshot2.fill.effect.levels.gamma = 1
-snapshot2.fill.effect.add.alpha = 0.8
-snapshot2.fill.effect.blur.horizontal.blurSize = 40
-snapshot2.fill.effect.blur.horizontal.sigma = 140
-snapshot2.fill.effect.blur.vertical.blurSize = 40
-snapshot2.fill.effect.blur.vertical.sigma = 140
-
---snapshot.fill.effect = "filter.exposure"
---snapshot.fill.effect.exposure = 2
-
-local image2 = display.newImage("logo.png")
-image2.x, image2.y = 400, 300
 
 end -- function scene:create( event )
+---------------------------------------------
+function PopUp()
+
+    -- make the logo visible 
+    transition.to(logo1,{alpha = 0 , time = 500} )
+    transition.to(logo2, {alpha = 1, time = 500})
+    transition.to(logo2, {alpha = 0, time = 1100})
+    transition.to(logo3, {alpha = 1, time = 1000})
+end
+
+timer.performWithDelay(1000, PopUp)
+
+
 
 --------------------------------------------------------------------------------------------
 
@@ -117,7 +102,7 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
-        blipSoundsChannel = audio.play(blipSounds )
+        phoenixSoundsChannel = audio.play( phoenixSounds )
 
  
 
