@@ -1,4 +1,0 @@
--- Title: main_menu.lua
--- Name: Ryoma Scott
--- Course: ICS2O/3C
--- This program...
